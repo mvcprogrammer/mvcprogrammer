@@ -239,11 +239,16 @@ The `--include "assets/*"` in the second sync keeps `--delete` from removing the
        "Action": "sts:AssumeRoleWithWebIdentity",
        "Condition": {
          "StringEquals": { "token.actions.githubusercontent.com:aud": "sts.amazonaws.com" },
-         "StringLike": { "token.actions.githubusercontent.com:sub": "repo:mvcprogrammer/mvcprogrammer.com:ref:refs/heads/main" }
+         "StringLike": { "token.actions.githubusercontent.com:sub": [
+           "repo:mvcprogrammer@<OWNER_ID>/mvcprogrammer@<REPO_ID>:ref:refs/heads/main",
+           "repo:mvcprogrammer/mvcprogrammer:ref:refs/heads/main"
+         ] }
        }
      }]
    }
    ```
+
+   GitHub's OIDC token identifies the repository as `repo:<owner>@<owner id>/<repo>@<repo id>:ref:...`, so the trust policy lists that form first. The plain `owner/repo` form is kept as a fallback. Find the IDs with `curl -s https://api.github.com/repos/mvcprogrammer/mvcprogrammer | grep -E '"id"'` (the first `id` is the repo, the one under `owner` is the owner), or read the exact `sub` value from a failed `AssumeRoleWithWebIdentity` event in CloudTrail.
 
 3. Attach a permissions policy to the role:
 
