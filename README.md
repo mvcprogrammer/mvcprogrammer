@@ -12,6 +12,7 @@ favicon.svg                 tab icon (follows dark mode)
 site.webmanifest
 robots.txt
 sitemap.xml
+assets/CodeSamples.zip      screenshots + readme linked from the About section
 assets/fonts/               self-hosted Inter and JetBrains Mono (latin subset) plus their OFL licenses
 assets/images/              og-image.png and portfolio/ images (TODO, see index.html)
 .github/workflows/deploy.yml  optional: sync to S3 and invalidate CloudFront on push to main
