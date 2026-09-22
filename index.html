@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+
+  <title>Neal Thomas | Senior Full-Stack Software Engineer | .NET, Angular, SQL Server</title>
+  <meta name="description" content="Neal Thomas is a senior full-stack software engineer in the Tampa Bay area, Florida, building enterprise business applications with C#/.NET Core, Angular, and SQL Server. 15+ years of experience, event-driven architecture, and deep accounting and healthcare domain knowledge.">
+  <meta name="author" content="Neal Thomas">
+  <link rel="canonical" href="https://mvcprogrammer.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mvcprogrammer.com/">
+  <meta property="og:title" content="Neal Thomas | Senior Full-Stack Software Engineer">
+  <meta property="og:description" content="Enterprise business applications on C#/.NET Core, Angular, and SQL Server. 15+ years of experience. Tampa Bay area, Florida.">
+  <meta property="og:site_name" content="mvcprogrammer.com">
+  <meta property="og:locale" content="en_US">
+  <!-- TODO: add assets/images/og-image.png (1200x630). It is referenced below but not yet in the repo. -->
+  <meta property="og:image" content="https://mvcprogrammer.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Neal Thomas, senior full-stack software engineer. .NET, Angular, SQL Server.">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@mvcprogrammer">
+  <meta name="twitter:creator" content="@mvcprogrammer">
+  <meta name="twitter:title" content="Neal Thomas | Senior Full-Stack Software Engineer">
+  <meta name="twitter:description" content="Enterprise business applications on C#/.NET Core, Angular, and SQL Server. Tampa Bay area, Florida.">
+  <meta name="twitter:image" content="https://mvcprogrammer.com/assets/images/og-image.png">
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <!-- TODO: add favicon.ico (32x32) and apple-touch-icon.png (180x180) for older browsers and iOS home screens. -->
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Fonts are self-hosted (SIL Open Font License, see assets/fonts/). Preloaded so text renders in the right face on first paint. -->
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Neal Thomas",
+    "url": "https://mvcprogrammer.com/",
+    "email": "mailto:mvc.programmer@gmail.com",
+    "telephone": "+1-727-336-2222",
+    "jobTitle": "Senior Full-Stack Software Engineer",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tampa Bay Area",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://github.com/mvcprogrammer",
+      "https://www.linkedin.com/in/mvcprogrammer/",
+      "https://twitter.com/mvcprogrammer"
+    ],
+    "knowsAbout": ["C#", ".NET Core", "ASP.NET Core Web API", "Angular", "TypeScript", "SQL Server", "T-SQL", "RabbitMQ", "AWS", "Azure DevOps", "Event-driven architecture", "CQRS", "HL7", "FHIR", "Accounting systems"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Inline SVG sprite for social and service icons -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="sr-only" aria-hidden="true" focusable="false">
+    <symbol id="icon-github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+    </symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+    </symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/>
+    </symbol>
+    <symbol id="icon-design" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4l10.5-10.5a2.83 2.83 0 0 0-4-4L4 16v4zM13.5 6.5l4 4M3 21l3-1"/>
+    </symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>
+    </symbol>
+    <symbol id="icon-deploy" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M7 18a4 4 0 0 1-.6-7.95A6 6 0 0 1 18 8.5 4.5 4.5 0 0 1 17.5 18H7zM12 12v6M9.5 14.5L12 12l2.5 2.5"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zM3.5 7.5L12 13l8.5-5.5"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M5.5 3h3l1.75 4.25-2 1.5a11 11 0 0 0 7 7l1.5-2L21 15.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3.5 5a2 2 0 0 1 2-2z"/>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11M7.5 10.5L12 15l4.5-4.5M4 19h16"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Neal Thomas, back to top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Neal Thomas</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav-list" role="list">
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#services">Services</a></li>
+          <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link" href="#resume">Resume</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <ul class="social-list" role="list" aria-label="Social profiles">
+          <li>
+            <a class="social-link" href="https://github.com/mvcprogrammer" target="_blank" rel="noopener noreferrer me" aria-label="GitHub">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>
+            </a>
+          </li>
+          <li>
+            <a class="social-link" href="https://www.linkedin.com/in/mvcprogrammer/" target="_blank" rel="noopener noreferrer me" aria-label="LinkedIn">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg>
+            </a>
+          </li>
+          <li>
+            <a class="social-link" href="https://twitter.com/mvcprogrammer" target="_blank" rel="noopener noreferrer me" aria-label="X (Twitter)">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== Hero ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="eyebrow">Tampa Bay area, Florida, USA</p>
+        <h1 id="hero-title">I Am Neal&nbsp;Thomas<span class="accent">.</span></h1>
+        <p class="lead">Senior full-stack engineer building enterprise business applications on C#&nbsp;/&nbsp;.NET, Angular, and SQL&nbsp;Server.</p>
+
+        <ul class="highlights" role="list" aria-label="Highlights">
+          <li><span class="highlight-value">15+ yrs</span><span class="highlight-label">C# / .NET</span></li>
+          <li><span class="highlight-value">Angular</span><span class="highlight-label">TypeScript front ends</span></li>
+          <li><span class="highlight-value">SQL Server</span><span class="highlight-label">T-SQL &amp; performance tuning</span></li>
+        </ul>
+
+        <div class="button-row">
+          <a class="button button-primary" href="#portfolio">View portfolio</a>
+          <a class="button button-secondary" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <p class="eyebrow">01 / About</p>
+        <h2 id="about-title">About me</h2>
+        <div class="about-grid">
+          <div class="about-body">
+            <p>I've spent 15+ years building enterprise business applications on C# / .NET and SQL Server, with Angular front ends over ASP.NET Core Web APIs. My SQL Server work runs deep: complex queries, stored procedures, indexing, execution plan analysis, and performance tuning under concurrent load.</p>
+            <p>Most recently I re-architected a legacy interval-polling Windows service into an event-driven RabbitMQ pipeline that handles 1M+ API requests around the clock. Before that I developed and maintained TOPS Software's proprietary accounting system, covering general ledger, receivables, payables, bank reconciliation, and financial reporting.</p>
+            <p>I follow SOLID principles and modern patterns like CQRS and dependency injection, and I own work from Sprint 0 and architecture review through delivery, including code review, mentoring, and production root-cause analysis. AI-assisted tools like Claude Code are part of my daily workflow.</p>
+            <a class="button button-primary" href="https://elasticbeanstalk-us-east-1-334383610383.s3.amazonaws.com/mvcprogrammer/CodeSamples.zip" download>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
+              Download code samples
+            </a>
+          </div>
+          <div class="about-aside">
+            <h3 class="aside-title">Core skills</h3>
+            <ul class="tag-list" role="list" aria-label="Skills">
+              <li class="tag">Angular</li>
+              <li class="tag">C# / .NET Core</li>
+              <li class="tag">SQL Server</li>
+              <li class="tag">AWS</li>
+              <li class="tag">RabbitMQ</li>
+              <li class="tag">Azure DevOps</li>
+              <li class="tag">xUnit</li>
+              <li class="tag">Docker</li>
+            </ul>
+            <h3 class="aside-title">Domains</h3>
+            <ul class="tag-list" role="list" aria-label="Domain expertise">
+              <li class="tag">Accounting</li>
+              <li class="tag">Healthcare (HL7, FHIR, HIPAA)</li>
+              <li class="tag">Real estate</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Quote ===== -->
+    <section class="quote-band" aria-label="Quote">
+      <div class="container">
+        <figure class="quote">
+          <blockquote>
+            <p>Sometimes it is the people no one can imagine anything of who do the things no one can imagine.</p>
+          </blockquote>
+          <figcaption>Alan Turing</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <p class="eyebrow">02 / Services</p>
+        <h2 id="services-title">What I do</h2>
+        <div class="card-grid">
+          <article class="card service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg class="icon" focusable="false"><use href="#icon-design"></use></svg>
+            </div>
+            <h3>Design</h3>
+            <p>Turning requirements from Product into scalable design blueprints, from Sprint 0 and architecture review through technical specs and backlog grooming.</p>
+          </article>
+          <article class="card service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg class="icon" focusable="false"><use href="#icon-code"></use></svg>
+            </div>
+            <h3>Code &amp; Test</h3>
+            <p>Maintainable, efficient code built on SOLID principles and modern patterns, with unit and integration coverage in xUnit, NUnit, and Moq.</p>
+          </article>
+          <article class="card service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg class="icon" focusable="false"><use href="#icon-deploy"></use></svg>
+            </div>
+            <h3>Deploy</h3>
+            <p>CI/CD with Azure DevOps Pipelines and GitHub Actions, Docker, and AWS, instrumented with Serilog, Seq, Datadog, and CloudWatch so production issues surface before customers notice.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Portfolio ===== -->
+    <section class="section section-alt" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <p class="eyebrow">03 / Portfolio</p>
+        <h2 id="portfolio-title">Selected work</h2>
+        <!-- TODO: supply the six card images in assets/images/portfolio/ (recommended 1200x750 WebP or JPEG, 16:10). Until a file exists, main.js shows a labeled slot in its place. -->
+        <div class="card-grid">
+          <article class="card portfolio-card portfolio-card-featured">
+            <div class="card-media">
+              <!-- TODO: image for mvcprogrammer.com -->
+              <img src="assets/images/portfolio/mvcprogrammer-com.jpg" alt="Architecture diagram of mvcprogrammer.com served from S3 through CloudFront" width="1200" height="750" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <h3>mvcprogrammer.com</h3>
+              <p class="card-subtitle">Under the hood</p>
+              <p>This site is plain HTML, CSS, and JavaScript with no framework and no build step. The files live in a private S3 bucket that only CloudFront can read through Origin Access Control. CloudFront serves them worldwide over HTTPS with an ACM certificate, Route 53 points the domain at the distribution, and a GitHub Actions workflow syncs the bucket and invalidates the cache on every push to main. No servers, no load balancer, no auto scaling group.</p>
+            </div>
+          </article>
+
+          <article class="card portfolio-card">
+            <div class="card-media">
+              <!-- TODO: image for Interview Games -->
+              <img src="assets/images/portfolio/interview-games.jpg" alt="Interview Games console application running in a terminal" width="1200" height="750" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <h3>Interview Games</h3>
+              <p class="card-subtitle">Console app code sample</p>
+              <!-- TODO: optional link to the repository or to the code samples download. -->
+            </div>
+          </article>
+
+          <article class="card portfolio-card">
+            <div class="card-media">
+              <!-- TODO: image for the Interactive Property Search Window Display -->
+              <img src="assets/images/portfolio/property-search-kiosk.jpg" alt="Touch screen kiosk in a storefront window showing an interactive property search" width="1200" height="750" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <h3>Interactive Property Search Window Display</h3>
+              <p class="card-subtitle">Touch screen kiosk</p>
+            </div>
+          </article>
+
+          <article class="card portfolio-card">
+            <div class="card-media">
+              <!-- TODO: image for Technical Skills -->
+              <img src="assets/images/portfolio/technical-skills.jpg" alt="Diagram of the technology stack: .NET, Angular, and AWS services" width="1200" height="750" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <h3>Technical Skills</h3>
+              <p class="card-subtitle">The stack</p>
+            </div>
+          </article>
+
+          <article class="card portfolio-card">
+            <div class="card-media">
+              <!-- TODO: image for C++ -->
+              <img src="assets/images/portfolio/cpp.jpg" alt="C++ and MFC source code in Visual Studio" width="1200" height="750" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <h3>C++</h3>
+              <p class="card-subtitle">Old school</p>
+            </div>
+          </article>
+
+          <article class="card portfolio-card">
+            <div class="card-media">
+              <!-- TODO: image for NDA Projects -->
+              <img src="assets/images/portfolio/nda-projects.jpg" alt="Redacted project documents representing work under NDA" width="1200" height="750" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <h3>NDA Projects</h3>
+              <p class="card-subtitle">Can't say much</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Resume ===== -->
+    <section class="section" id="resume" aria-labelledby="resume-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">04 / Resume</p>
+            <h2 id="resume-title">Experience</h2>
+          </div>
+          <!-- TODO: export NealThomas_Resume.docx to PDF and save it as assets/NealThomas_Resume.pdf. -->
+          <a class="button button-secondary" href="assets/NealThomas_Resume.pdf" download>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
+            Download resume (PDF)
+          </a>
+        </div>
+
+        <ol class="timeline" role="list">
+          <li class="timeline-item">
+            <p class="timeline-date"><time datetime="2023-12">Dec 2023</time> – <time datetime="2026-05">May 2026</time> · Remote</p>
+            <h3>Senior Software Engineer</h3>
+            <p class="timeline-org">AdvancedMD</p>
+            <ul class="timeline-points">
+              <li>Re-architected a legacy interval-polling Windows service into an on-demand RabbitMQ pipeline, turning scheduled batch processing into event-driven real-time throughput handling 1M+ API requests 24/7.</li>
+              <li>Designed the publish/subscribe topology: durable queues, routing keys, consumer acknowledgment, dead-letter handling, and Polly retries with exponential backoff.</li>
+              <li>Scaled parallel consumers with bounded concurrency, thread-safe shared state, and cooperative cancellation for long-running operations.</li>
+              <li>Built and maintained HL7 v2 and FHIR integrations with external healthcare systems in a HIPAA-regulated environment.</li>
+              <li>Tuned SQL Server at enterprise scale on high-write integration tables: execution plans, indexing strategy, and query rewrites.</li>
+              <li>Owned production incident response and root-cause analysis; instrumented services with Serilog, Seq, Datadog, and CloudWatch.</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <p class="timeline-date"><time datetime="2022-08">Aug 2022</time> – <time datetime="2023-08">Aug 2023</time> · Hybrid</p>
+            <h3>Software Engineer II (Full Stack)</h3>
+            <p class="timeline-org">Arise Virtual Solutions</p>
+            <ul class="timeline-points">
+              <li>Developed full-stack features and REST API endpoints with ASP.NET Core on AWS-backed infrastructure.</li>
+              <li>Built asynchronous, queue-driven processing with AWS SQS and SNS to move long-running work off the request path.</li>
+              <li>Worked across EC2, Lambda, RDS, and S3, with CloudWatch for logging and operational monitoring.</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <p class="timeline-date"><time datetime="2020-02">Feb 2020</time> – <time datetime="2022-08">Aug 2022</time> · Florida</p>
+            <h3>Software Engineer (Full Stack)</h3>
+            <p class="timeline-org">TOPS Software</p>
+            <ul class="timeline-points">
+              <li>Built full-stack features with Angular 2+ front ends over ASP.NET Core and ASP.NET Web API back ends.</li>
+              <li>Developed and maintained the company's proprietary accounting system: general ledger, receivables and assessments, vendor payables, bank reconciliation, and financial reporting.</li>
+              <li>Implemented CQRS with MediatR and real-time client updates with SignalR and WebSockets.</li>
+              <li>Took features from requirements intake through architecture review, Sprint 0, and backlog grooming; ran code reviews and mentored engineers.</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <p class="timeline-date"><time datetime="2018-11">Nov 2018</time> – <time datetime="2020-01">Jan 2020</time> · Florida</p>
+            <h3>C# Developer (Full Stack)</h3>
+            <p class="timeline-org">LIG Marine Managers Insurance</p>
+            <ul class="timeline-points">
+              <li>Led the migration of the company platform from .NET Framework 3.x to .NET Core MVC.</li>
+              <li>Developed Web API services documented with Swagger, plus a WPF client built on Caliburn.Micro.</li>
+              <li>Maintained legacy software, expanded unit test coverage, and improved overall codebase health.</li>
+            </ul>
+          </li>
+
+          <li class="timeline-item">
+            <p class="timeline-date"><time datetime="2010-01">Jan 2010</time> – <time datetime="2018-10">Oct 2018</time> · Florida</p>
+            <h3>C# Developer (Full Stack)</h3>
+            <p class="timeline-org">CENTURY 21</p>
+            <ul class="timeline-points">
+              <li>Developed SaaS real estate software using C# and C++.</li>
+              <li>Managed API integrations with major external platforms including Google and Facebook.</li>
+              <li>Built an interactive kiosk window display application (full-screen HD, non-web target).</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3 class="subsection-title">Education</h3>
+        <ol class="timeline timeline-compact" role="list">
+          <li class="timeline-item">
+            <h4>MIT OpenCourseWare</h4>
+            <p class="timeline-org">Physics</p>
+          </li>
+          <li class="timeline-item">
+            <h4>High School Diploma</h4>
+            <p class="timeline-org">Graduated at age 16</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section section-alt" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <p class="eyebrow">05 / Contact</p>
+        <h2 id="contact-title">Let's talk</h2>
+        <p class="lead">Email or call.</p>
+        <ul class="contact-list" role="list">
+          <li>
+            <a class="contact-link" href="mailto:mvc.programmer@gmail.com">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-mail"></use></svg>
+              <span>mvc.programmer@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact-link" href="tel:+17273362222">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone"></use></svg>
+              <span>(727) 336-2222</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">&copy; <span id="year">2026</span> mvcprogrammer.com</p>
+      <ul class="social-list" role="list" aria-label="Social profiles">
+        <li>
+          <a class="social-link" href="https://github.com/mvcprogrammer" target="_blank" rel="noopener noreferrer me" aria-label="GitHub">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a class="social-link" href="https://www.linkedin.com/in/mvcprogrammer/" target="_blank" rel="noopener noreferrer me" aria-label="LinkedIn">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a class="social-link" href="https://twitter.com/mvcprogrammer" target="_blank" rel="noopener noreferrer me" aria-label="X (Twitter)">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
