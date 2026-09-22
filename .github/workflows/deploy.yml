@@ -41,7 +41,7 @@ jobs:
         run: |
           aws s3 sync assets/ "s3://${S3_BUCKET}/assets/" --delete \
             --cache-control "public, max-age=604800, s-maxage=31536000" \
-            --exclude "README.md" --exclude "*.gitkeep"
+            --exclude "README.md" --exclude "*/README.md" --exclude "*.gitkeep"
 
       - name: Sync page, styles, scripts, and metadata (short browser TTL)
         run: |

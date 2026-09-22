@@ -121,7 +121,7 @@ cat > headers-policy.json <<'JSON'
   "Name": "mvcprogrammer-security-headers",
   "Comment": "HSTS, CSP, and friends for the static site",
   "SecurityHeadersConfig": {
-    "StrictTransportSecurity": { "Override": true, "AccessControlMaxAgeSec": 63072000, "IncludeSubdomains": true, "Preload": true },
+    "StrictTransportSecurity": { "Override": true, "AccessControlMaxAgeSec": 63072000, "IncludeSubdomains": true, "Preload": false },
     "ContentTypeOptions": { "Override": true },
     "FrameOptions": { "Override": true, "FrameOption": "DENY" },
     "ReferrerPolicy": { "Override": true, "ReferrerPolicy": "strict-origin-when-cross-origin" },
@@ -143,7 +143,7 @@ aws cloudfront create-response-headers-policy --response-headers-policy-config f
 
 Attach the returned policy ID to the default cache behavior (console: Behaviors > Edit > Response headers policy). The inline JSON-LD block in `index.html` is a data block, not executable script, so `script-src 'self'` does not affect it. If you ever add an inline `<script>` or `style=""` attribute, the CSP will block it; move the code into `main.js` or `styles.css` instead.
 
-HSTS with `preload` is a one-way door: once submitted to hstspreload.org, browsers will refuse plain HTTP for the domain and every subdomain. Drop the `Preload` flag if any subdomain still needs HTTP.
+`Preload` is left off on purpose. Turning it on and submitting the domain to hstspreload.org is a one-way door: browsers will then refuse plain HTTP for the domain and every subdomain, including the mail-related hostnames in the zone. Enable it only once you are sure nothing under mvcprogrammer.com will ever need HTTP.
 
 ### 4b. Redirect www to the apex (optional)
 
@@ -202,7 +202,7 @@ Cache headers use `s-maxage` so CloudFront caches aggressively while browsers re
 # Long-lived images
 aws s3 sync assets/ s3://mvcprogrammer.com/assets/ --delete \
   --cache-control "public, max-age=604800, s-maxage=31536000" \
-  --exclude "README.md" --exclude "*.gitkeep"
+  --exclude "README.md" --exclude "*/README.md" --exclude "*.gitkeep"
 
 # Everything else (HTML, CSS, JS, icons, sitemap, robots)
 aws s3 sync . s3://mvcprogrammer.com/ --delete \
