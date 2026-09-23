@@ -1,276 +1,82 @@
-# mvcprogrammer.com
+# Hi, I'm Neal Thomas
 
-Personal portfolio site for Neal Thomas. Plain HTML, CSS, and vanilla JavaScript. No framework, no build step, no backend. Hosted as static files on Amazon S3 behind CloudFront.
+**Senior Full-Stack Software Engineer** · C# / .NET Core · Angular · SQL Server · AWS
+Tampa Bay area, Florida · 15+ years building enterprise business applications
 
-## Files
+[![Website](https://img.shields.io/badge/mvcprogrammer.com-0A66C2?style=flat&logo=googlechrome&logoColor=white)](https://mvcprogrammer.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mvcprogrammer/)
+[![Email](https://img.shields.io/badge/mvc.programmer%40gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:mvc.programmer@gmail.com)
 
-```
-index.html                  the single page
-styles.css                  mobile-first styles, light/dark via prefers-color-scheme
-main.js                     nav toggle, active-section highlighting, footer year, image fallback
-favicon.svg                 tab icon (follows dark mode)
-site.webmanifest
-robots.txt
-sitemap.xml
-assets/CodeSamples.zip      screenshots + readme linked from the About section
-assets/fonts/               self-hosted Inter and JetBrains Mono (latin subset) plus their OFL licenses
-assets/images/              og-image.jpg social preview and portfolio/ card images (three still TODO, see index.html)
-.github/workflows/deploy.yml  optional: sync to S3 and invalidate CloudFront on push to main
-```
+I build back ends that run around the clock and front ends people like using. Most recently I re-architected a legacy polling Windows service into an event-driven **RabbitMQ** pipeline that processes **1M+ API requests, 24/7**. Before that I built and maintained a proprietary accounting system (general ledger, receivables, payables, bank reconciliation, financial reporting) on Angular and ASP.NET Core.
 
-## Preview locally
+---
 
-Any static file server works. With Python:
+## Live projects
 
-```sh
-python3 -m http.server 8080
-# open http://localhost:8080
-```
+Each of these is mine end to end: design, code, infrastructure, and deployment. All three run on **AWS**.
 
-## Before you deploy
+### [SandKey](https://github.com/mvcprogrammer/sandkey) · .NET 10 API on AWS Lambda
 
-Search `index.html` for `TODO` and resolve each one: the three remaining portfolio images (technical-skills, cpp, nda-projects), the `favicon.ico` / `apple-touch-icon.png` fallbacks, and the resume PDF. Export the current resume from Word (File > Save As, format PDF) to `assets/NealThomas_Resume.pdf`; the Resume section's download button already points there. Update `<lastmod>` in `sitemap.xml` when content changes.
+The backend for a touch-screen property kiosk in a Clearwater Beach real estate office. It serves active MLS listings from the Bridge Data Output (Stellar MLS) feed and emails listing details to visitors who ask for them. The kiosk has run since 2009. This is the 2026 rebuild: a legacy ASP.NET Core 6 MVC app redone as a clean, fully tested, serverless API.
 
-## Deploy to S3 + CloudFront
+- **Serverless .NET:** ASP.NET Core on **.NET 10**, hosted in **AWS Lambda** (arm64, ReadyToRun) through `Amazon.Lambda.AspNetCoreServer.Hosting`. The same build runs locally under Kestrel.
+- **Infrastructure as code:** one **AWS SAM / CloudFormation** stack creates Lambda and its function URL, a private **S3** bucket for the web bundle, the **ACM** certificate, the **Route 53** alias, and a **CloudFront** distribution. That distribution routes `/api/*` to Lambda and everything else to S3, with Origin Access Control signing both origins.
+- **No secrets in the repo:** credentials come from **SSM Parameter Store** SecureStrings at startup, through a least-privilege IAM policy. Options are validated on start, so a missing secret stops the app at startup instead of failing on the first request.
+- **Resilience and errors:** typed `HttpClient`s from `IHttpClientFactory` with the standard resilience handler (`Microsoft.Extensions.Http.Resilience`). Typed exceptions are mapped to **RFC 7807 ProblemDetails** (404 / 502 / 504) by a single `IExceptionHandler`. Every I/O method takes a `CancellationToken`.
+- **Security and privacy:** a delegating handler adds the feed's access token only to outgoing requests, so it never appears in logged URLs. A fixed-window **rate limiter** guards the one endpoint that sends email. Visitor email addresses and phone numbers never reach a log line, and a test checks this.
+- **Performance:** source-generated `System.Text.Json` serialization (no reflection, no `dynamic`), and listing photos load directly from the feed's CDN instead of passing through the API.
+- **Observability:** **OpenTelemetry** tracing for ASP.NET Core and outbound HTTP, OTLP export, plus `/health` (liveness) and `/ready` (readiness, checks the feed).
+- **Quality gates:** 100+ **xUnit** tests with **NSubstitute** and `FakeLogger<T>`, in-memory hosting via `WebApplicationFactory`, and `TreatWarningsAsErrors`, .NET analyzers, and `EnforceCodeStyleInBuild`, so style and XML docs are enforced by the compiler. NuGet versions are managed centrally.
+- **Local dev:** hitting Run on the API also starts the Vite-built kiosk screen through `SpaProxy`. The proxy is a Debug-only reference, so it never ships in the Lambda package.
 
-The bucket stays private. CloudFront reads from it through Origin Access Control (OAC), serves it over HTTPS with an ACM certificate, and Route 53 points the domain at the distribution. Replace the placeholders in angle brackets. All commands assume the AWS CLI v2 is installed and configured.
+### [mvcprogrammer.com](https://mvcprogrammer.com) · this repo
 
-### 1. Private S3 bucket
+My portfolio, written in **plain HTML, CSS, and vanilla JavaScript**. No framework, no build step, no dependencies.
 
-```sh
-aws s3api create-bucket --bucket mvcprogrammer.com --region us-east-1
-aws s3api put-public-access-block --bucket mvcprogrammer.com \
-  --public-access-block-configuration \
-  BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
-```
+- **Hand-written front end:** mobile-first responsive CSS, automatic light/dark theme via `prefers-color-scheme`, self-hosted fonts, accessible markup (ARIA, semantic landmarks), and structured data (JSON-LD) for search.
+- **Serverless static hosting on AWS:** private **S3** bucket behind **CloudFront** with Origin Access Control, **ACM** TLS certificate, **Route 53** DNS, HTTP/2 + HTTP/3.
+- **Hardened by default:** a strict Content Security Policy (no inline script, nothing third-party), HSTS, and security headers set by a CloudFront response headers policy; a **CloudFront Function** redirects `www` to the apex.
+- **CI/CD with no stored secrets:** **GitHub Actions** deploys every push to `main`, syncing to S3 and invalidating CloudFront, authenticated with **OIDC** and a least-privilege IAM role.
 
-Do not enable static website hosting on the bucket. CloudFront will use the S3 REST endpoint, which is what OAC requires.
+Full infrastructure walkthrough: [docs/DEPLOY.md](docs/DEPLOY.md)
 
-### 2. ACM certificate (must be in us-east-1)
+### [lightsplitters.com](https://lightsplitters.com)
 
-CloudFront only accepts certificates from `us-east-1`, regardless of where the bucket lives.
+The website for LightSplitters, my photography studio, built as an **Angular** (TypeScript) single-page application and hosted on **AWS**.
 
-```sh
-aws acm request-certificate --region us-east-1 \
-  --domain-name mvcprogrammer.com \
-  --subject-alternative-names www.mvcprogrammer.com \
-  --validation-method DNS
-```
+- Component and service architecture in Angular with TypeScript
+- Image-heavy galleries (weddings, engagements, studio portraits, pets) tuned for fast loading
+- Deployed and served on AWS
 
-Take the CNAME name/value pairs from `aws acm describe-certificate` and add them to the hosted zone (the ACM console has a "Create records in Route 53" button that does this in one click). Wait until the certificate status is `ISSUED`.
+> Three projects, three deliberate choices: vanilla JavaScript where a framework would be overhead, Angular where an app structure pays off, and serverless .NET where an always-on server would only add cost.
 
-### 3. Origin Access Control
+---
 
-```sh
-aws cloudfront create-origin-access-control --origin-access-control-config \
-  Name=mvcprogrammer-s3-oac,OriginAccessControlOriginType=s3,SigningBehavior=always,SigningProtocol=sigv4
-```
+## Tech stack
 
-Note the returned `Id`.
-
-### 4. CloudFront distribution
-
-The console is the least error-prone way to create the distribution. Use these settings:
-
-| Setting | Value |
+| Area | Tools |
 | --- | --- |
-| Origin domain | `mvcprogrammer.com.s3.us-east-1.amazonaws.com` (the REST endpoint, not the website endpoint) |
-| Origin access | Origin access control settings, pick the OAC from step 3 |
-| Viewer protocol policy | Redirect HTTP to HTTPS |
-| Allowed HTTP methods | GET, HEAD |
-| Cache policy | CachingOptimized |
-| Compress objects automatically | Yes |
-| Alternate domain names (CNAMEs) | `mvcprogrammer.com`, `www.mvcprogrammer.com` |
-| Custom SSL certificate | the ACM certificate from step 2 |
-| Default root object | `index.html` |
-| HTTP versions | HTTP/2 and HTTP/3 |
-| Security policy (TLS) | TLSv1.2_2021 |
-| Response headers policy | the custom policy from step 4a below |
+| **Languages** | C#, TypeScript, JavaScript, SQL (T-SQL) |
+| **Front end** | Angular 2+, vanilla JS, HTML / CSS, Vite, REST API consumption |
+| **.NET & APIs** | .NET 10 / .NET Core, ASP.NET Core Web API & MVC, EF Core, Dapper, MediatR, AutoMapper, SignalR / WebSockets, OpenAPI / Swagger, ProblemDetails, rate limiting, source-generated System.Text.Json, OAuth 2.0 / JWT |
+| **Databases** | SQL Server: complex queries, stored procedures, indexing, execution plans, performance tuning, deadlock diagnosis |
+| **Messaging & resilience** | RabbitMQ, AWS SQS / SNS, Hangfire, Polly, Microsoft.Extensions.Http.Resilience, async/await, TPL, `Parallel.ForEachAsync`, `SemaphoreSlim` |
+| **Cloud & DevOps** | AWS (Lambda, S3, CloudFront, Route 53, ACM, IAM, SSM Parameter Store, EC2, RDS, CloudWatch), AWS SAM / CloudFormation, GitHub Actions (OIDC), Azure DevOps, Docker, Git |
+| **Observability** | OpenTelemetry, Serilog, Seq, Datadog, CloudWatch, health checks |
+| **Architecture** | SOLID, CQRS, dependency injection, event-driven design, serverless, microservices, legacy modernization |
+| **Testing** | xUnit, NUnit, Moq, NSubstitute, WebApplicationFactory integration tests, .NET analyzers as build errors |
+| **Domains** | Accounting (GL, AR/AP, bank reconciliation, QuickBooks API) · Healthcare (HL7 v2, FHIR, HIPAA) |
+| **AI-assisted dev** | Claude / Claude Code, ChatGPT, LangChain |
 
-Optional: under Error pages, map HTTP 403 to response code 404 with response page path `/index.html`. With OAC, S3 returns 403 for missing keys, so this turns "not found" into the home page instead of an XML error.
+---
 
-After creating the distribution, the console shows a "copy policy" banner for the bucket. Apply it, or use this policy (fill in the account ID and distribution ID):
+## Highlights
 
-```sh
-cat > bucket-policy.json <<'JSON'
-{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Sid": "AllowCloudFrontServicePrincipalReadOnly",
-    "Effect": "Allow",
-    "Principal": { "Service": "cloudfront.amazonaws.com" },
-    "Action": "s3:GetObject",
-    "Resource": "arn:aws:s3:::mvcprogrammer.com/*",
-    "Condition": {
-      "StringEquals": {
-        "AWS:SourceArn": "arn:aws:cloudfront::<ACCOUNT_ID>:distribution/<DISTRIBUTION_ID>"
-      }
-    }
-  }]
-}
-JSON
-aws s3api put-bucket-policy --bucket mvcprogrammer.com --policy file://bucket-policy.json
-```
+- **Event-driven at scale:** designed a RabbitMQ publish/subscribe topology with durable queues, dead-letter handling, and Polly retries with exponential backoff, so traffic spikes are absorbed by the queue instead of dropped.
+- **Healthcare interoperability:** always-on HL7 v2 and FHIR integrations with external systems in a HIPAA-regulated environment.
+- **Accounting systems:** built a proprietary accounting platform designed to run without a traditional month-end close; CQRS with MediatR and real-time updates over SignalR.
+- **Modernization:** led a platform migration from .NET Framework 3.x to .NET Core MVC, and rebuilt a 17-year-old kiosk backend as a serverless .NET 10 API ([SandKey](https://github.com/mvcprogrammer/sandkey)).
 
-### 4a. Security headers
+---
 
-S3 and CloudFront send no security headers on their own. Create a response headers policy once and attach it to the distribution's default behavior. The CSP below matches what the page actually loads: same-origin scripts, styles, fonts, and images, nothing inline, nothing third-party.
-
-```sh
-cat > headers-policy.json <<'JSON'
-{
-  "Name": "mvcprogrammer-security-headers",
-  "Comment": "HSTS, CSP, and friends for the static site",
-  "SecurityHeadersConfig": {
-    "StrictTransportSecurity": { "Override": true, "AccessControlMaxAgeSec": 63072000, "IncludeSubdomains": true, "Preload": false },
-    "ContentTypeOptions": { "Override": true },
-    "FrameOptions": { "Override": true, "FrameOption": "DENY" },
-    "ReferrerPolicy": { "Override": true, "ReferrerPolicy": "strict-origin-when-cross-origin" },
-    "ContentSecurityPolicy": {
-      "Override": true,
-      "ContentSecurityPolicy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
-    }
-  },
-  "CustomHeadersConfig": {
-    "Quantity": 1,
-    "Items": [
-      { "Header": "Permissions-Policy", "Value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()", "Override": true }
-    ]
-  }
-}
-JSON
-aws cloudfront create-response-headers-policy --response-headers-policy-config file://headers-policy.json
-```
-
-Attach the returned policy ID to the default cache behavior (console: Behaviors > Edit > Response headers policy). The inline JSON-LD block in `index.html` is a data block, not executable script, so `script-src 'self'` does not affect it. If you ever add an inline `<script>` or `style=""` attribute, the CSP will block it; move the code into `main.js` or `styles.css` instead.
-
-`Preload` is left off on purpose. Turning it on and submitting the domain to hstspreload.org is a one-way door: browsers will then refuse plain HTTP for the domain and every subdomain, including the mail-related hostnames in the zone. Enable it only once you are sure nothing under mvcprogrammer.com will ever need HTTP.
-
-### 4b. Redirect www to the apex (optional)
-
-Both hostnames point at the same distribution, so without a redirect the site is reachable at two URLs. A CloudFront Function on viewer-request fixes that:
-
-```js
-function handler(event) {
-  var request = event.request;
-  if (request.headers.host && request.headers.host.value === 'www.mvcprogrammer.com') {
-    return {
-      statusCode: 301,
-      statusDescription: 'Moved Permanently',
-      headers: { location: { value: 'https://mvcprogrammer.com' + request.uri } }
-    };
-  }
-  return request;
-}
-```
-
-Create it under CloudFront > Functions, publish it, and associate it with the default behavior's viewer request event.
-
-### 5. Route 53 records
-
-In the hosted zone for `mvcprogrammer.com`, create alias records pointing at the distribution. CloudFront's hosted zone ID is always `Z2FDTNDATAQYW2`.
-
-```sh
-cat > records.json <<'JSON'
-{
-  "Comment": "Point apex and www at CloudFront",
-  "Changes": [
-    { "Action": "UPSERT", "ResourceRecordSet": {
-        "Name": "mvcprogrammer.com", "Type": "A",
-        "AliasTarget": { "HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "<DISTRIBUTION_DOMAIN>.cloudfront.net", "EvaluateTargetHealth": false } } },
-    { "Action": "UPSERT", "ResourceRecordSet": {
-        "Name": "mvcprogrammer.com", "Type": "AAAA",
-        "AliasTarget": { "HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "<DISTRIBUTION_DOMAIN>.cloudfront.net", "EvaluateTargetHealth": false } } },
-    { "Action": "UPSERT", "ResourceRecordSet": {
-        "Name": "www.mvcprogrammer.com", "Type": "A",
-        "AliasTarget": { "HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "<DISTRIBUTION_DOMAIN>.cloudfront.net", "EvaluateTargetHealth": false } } },
-    { "Action": "UPSERT", "ResourceRecordSet": {
-        "Name": "www.mvcprogrammer.com", "Type": "AAAA",
-        "AliasTarget": { "HostedZoneId": "Z2FDTNDATAQYW2", "DNSName": "<DISTRIBUTION_DOMAIN>.cloudfront.net", "EvaluateTargetHealth": false } } }
-  ]
-}
-JSON
-aws route53 change-resource-record-sets --hosted-zone-id <HOSTED_ZONE_ID> --change-batch file://records.json
-```
-
-Once the old EC2 / load balancer records are replaced, the ALB, auto scaling group, and instances can be deleted.
-
-### 6. Upload and redeploy
-
-Cache headers use `s-maxage` so CloudFront caches aggressively while browsers re-check within minutes. The invalidation at the end clears CloudFront on every deploy.
-
-```sh
-# Long-lived images
-aws s3 sync assets/ s3://mvcprogrammer.com/assets/ --delete \
-  --cache-control "public, max-age=604800, s-maxage=31536000" \
-  --exclude "README.md" --exclude "*/README.md" --exclude "*.gitkeep"
-
-# Everything else (HTML, CSS, JS, icons, sitemap, robots)
-aws s3 sync . s3://mvcprogrammer.com/ --delete \
-  --cache-control "public, max-age=300, s-maxage=31536000" \
-  --exclude "*" \
-  --include "index.html" --include "styles.css" --include "main.js" \
-  --include "favicon.svg" --include "site.webmanifest" \
-  --include "robots.txt" --include "sitemap.xml" --include "assets/*" \
-  --exclude "assets/README.md" --exclude "assets/*/README.md" --exclude "*.gitkeep"
-
-# The CLI does not know the .webmanifest MIME type
-aws s3 cp site.webmanifest s3://mvcprogrammer.com/site.webmanifest \
-  --content-type "application/manifest+json" \
-  --cache-control "public, max-age=300, s-maxage=31536000"
-
-aws cloudfront create-invalidation --distribution-id <DISTRIBUTION_ID> --paths "/*"
-```
-
-The `--include "assets/*"` in the second sync keeps `--delete` from removing the assets uploaded in the first step. The second sync will re-upload changed assets with the shorter browser TTL only if they changed between the two commands, which does not happen in practice.
-
-## GitHub Actions (optional)
-
-`.github/workflows/deploy.yml` runs the same steps on every push to `main`. It authenticates with OpenID Connect (OIDC), so no long-lived access keys are stored in GitHub. Third-party actions are pinned to commit SHAs with the version in a trailing comment; bump the SHA and the comment together when upgrading.
-
-1. Create an IAM identity provider for GitHub in the AWS account (IAM > Identity providers > OpenID Connect, provider URL `https://token.actions.githubusercontent.com`, audience `sts.amazonaws.com`).
-2. Create an IAM role with this trust policy (replace the owner/repo):
-
-   ```json
-   {
-     "Version": "2012-10-17",
-     "Statement": [{
-       "Effect": "Allow",
-       "Principal": { "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/token.actions.githubusercontent.com" },
-       "Action": "sts:AssumeRoleWithWebIdentity",
-       "Condition": {
-         "StringEquals": { "token.actions.githubusercontent.com:aud": "sts.amazonaws.com" },
-         "StringLike": { "token.actions.githubusercontent.com:sub": [
-           "repo:mvcprogrammer@<OWNER_ID>/mvcprogrammer@<REPO_ID>:ref:refs/heads/main",
-           "repo:mvcprogrammer/mvcprogrammer:ref:refs/heads/main"
-         ] }
-       }
-     }]
-   }
-   ```
-
-   GitHub's OIDC token identifies the repository as `repo:<owner>@<owner id>/<repo>@<repo id>:ref:...`, so the trust policy lists that form first. The plain `owner/repo` form is kept as a fallback. Find the IDs with `curl -s https://api.github.com/repos/mvcprogrammer/mvcprogrammer | grep -E '"id"'` (the first `id` is the repo, the one under `owner` is the owner), or read the exact `sub` value from a failed `AssumeRoleWithWebIdentity` event in CloudTrail.
-
-3. Attach a permissions policy to the role:
-
-   ```json
-   {
-     "Version": "2012-10-17",
-     "Statement": [
-       { "Effect": "Allow", "Action": ["s3:ListBucket"], "Resource": "arn:aws:s3:::mvcprogrammer.com" },
-       { "Effect": "Allow", "Action": ["s3:PutObject", "s3:DeleteObject"], "Resource": "arn:aws:s3:::mvcprogrammer.com/*" },
-       { "Effect": "Allow", "Action": ["cloudfront:CreateInvalidation"], "Resource": "arn:aws:cloudfront::<ACCOUNT_ID>:distribution/<DISTRIBUTION_ID>" }
-     ]
-   }
-   ```
-
-4. In the GitHub repository, add these under Settings > Secrets and variables > Actions:
-
-   | Type | Name | Value |
-   | --- | --- | --- |
-   | Secret | `AWS_ROLE_ARN` | `arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME>` |
-   | Variable | `S3_BUCKET` | `mvcprogrammer.com` |
-   | Variable | `CLOUDFRONT_DISTRIBUTION_ID` | the distribution ID |
-   | Variable | `AWS_REGION` | `us-east-1` |
-
-Push to `main`, or run the workflow manually from the Actions tab.
+<sub>Résumé and code samples: [mvcprogrammer.com](https://mvcprogrammer.com)</sub>
