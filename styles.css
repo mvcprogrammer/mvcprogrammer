@@ -739,6 +739,11 @@ img, svg {
     border-right: 1px solid var(--border);
   }
 
+  /* The featured photo has its subject on the right; keep it in frame when the text column sets the height */
+  .portfolio-card-featured .card-media img {
+    object-position: 72% center;
+  }
+
   .portfolio-card-featured .card-body {
     align-self: center;
     padding: 2rem;

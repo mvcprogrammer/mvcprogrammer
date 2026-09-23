@@ -14,7 +14,7 @@ robots.txt
 sitemap.xml
 assets/CodeSamples.zip      screenshots + readme linked from the About section
 assets/fonts/               self-hosted Inter and JetBrains Mono (latin subset) plus their OFL licenses
-assets/images/              og-image.png and portfolio/ images (TODO, see index.html)
+assets/images/              og-image.jpg social preview and portfolio/ card images (three still TODO, see index.html)
 .github/workflows/deploy.yml  optional: sync to S3 and invalidate CloudFront on push to main
 ```
 
@@ -29,7 +29,7 @@ python3 -m http.server 8080
 
 ## Before you deploy
 
-Search `index.html` for `TODO` and resolve each one: the six portfolio images, the `og-image.png` social preview, the `favicon.ico` / `apple-touch-icon.png` fallbacks, and the resume PDF. Export the current resume from Word (File > Save As, format PDF) to `assets/NealThomas_Resume.pdf`; the Resume section's download button already points there. Update `<lastmod>` in `sitemap.xml` when content changes.
+Search `index.html` for `TODO` and resolve each one: the three remaining portfolio images (technical-skills, cpp, nda-projects), the `favicon.ico` / `apple-touch-icon.png` fallbacks, and the resume PDF. Export the current resume from Word (File > Save As, format PDF) to `assets/NealThomas_Resume.pdf`; the Resume section's download button already points there. Update `<lastmod>` in `sitemap.xml` when content changes.
 
 ## Deploy to S3 + CloudFront
 

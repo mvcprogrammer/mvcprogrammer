@@ -1,2 +1,2 @@
-# TODO: add og-image.png (1200x630) here for social previews.
-# TODO: add the six portfolio images to portfolio/ (see index.html for file names).
+# og-image.jpg (1200x630) is the social preview referenced from index.html.
+# TODO: portfolio/ still needs technical-skills.jpg, cpp.jpg, and nda-projects.jpg (1200x750, 16:10). See index.html.
