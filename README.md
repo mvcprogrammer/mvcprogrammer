@@ -20,7 +20,7 @@
 
 <br>
 
-I build back ends that run around the clock and front ends people like using. Fifteen-plus years on C# / .NET and SQL Server, with Angular and React on top. Most recently I re-architected a polling Windows service into an event-driven **RabbitMQ** pipeline that processes **1M+ API requests, 24/7**. Before that I built and maintained a proprietary accounting system (general ledger, receivables, payables, bank reconciliation, financial reporting) on Angular and ASP.NET Core. AI-assisted tools like Claude Code are part of my daily workflow.
+My professional experience includes more than fifteen years of API and back-end development on C# / .NET and SQL Server, with Angular and React on the front end. I specialize in services that run reliably around the clock and user interfaces that people find easy to use. Most recently, I re-architected a polling Windows service into an event-driven **RabbitMQ** pipeline that handles **more than one million API requests, 24/7**. Before that, I built and maintained a proprietary accounting system on Angular and ASP.NET Core, covering the general ledger, receivables, payables, bank reconciliation, and financial reporting. AI-assisted tools such as Claude Code are part of my daily workflow.
 
 ## How the repositories are organized
 
