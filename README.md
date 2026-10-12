@@ -45,6 +45,7 @@ The layout is deliberate. **A repository is one thing that ships**, named after 
 | **Data** | SQL Server: complex queries, stored procedures, indexing, execution plans, performance tuning, deadlock diagnosis. DynamoDB single-table design |
 | **Cloud and delivery** | AWS Lambda, S3, CloudFront, Route 53, IAM, SSM, SAM / CloudFormation, GitHub Actions with OIDC, Azure DevOps, Docker |
 | **Quality** | xUnit, NUnit, NSubstitute, Moq, Telerik JustMock, WebApplicationFactory integration tests, analyzers as build errors, OpenTelemetry, Serilog, Datadog |
+| **AI** | Claude AI pair programming in day-to-day .NET work; two years on an enterprise AI Transition Team |
 | **Domains** | Accounting (GL, AR/AP, bank reconciliation, QuickBooks API) · Healthcare (HL7 v2, FHIR, HIPAA) · Real estate (Stellar MLS via the Bridge Data Output API) · Financial trading systems |
 
 <br>
