@@ -2,7 +2,7 @@
 
 # Neal Thomas
 
-**Senior full-stack engineer** &nbsp;·&nbsp; C# / .NET &nbsp;·&nbsp; Angular &nbsp;·&nbsp; React &nbsp;·&nbsp; SQL Server &nbsp;·&nbsp; AWS
+**API-first software engineer** &nbsp;·&nbsp; C# / .NET &nbsp;·&nbsp; Angular &nbsp;·&nbsp; React &nbsp;·&nbsp; SQL Server &nbsp;·&nbsp; AWS
 <br>Tampa Bay, Florida
 
 [![mvcprogrammer.com](https://img.shields.io/badge/mvcprogrammer.com-2f62d9?style=flat-square&logo=googlechrome&logoColor=white)](https://mvcprogrammer.com)
