@@ -47,7 +47,16 @@ mvcprogrammer.com is built four times from the same content and the same shared 
 | **[React](https://react.mvcprogrammer.com)**<br><sub>`react/`</sub> | React 19, TypeScript, Vite, Vitest. | The react.dev documentation palette: cool slate surfaces, React blue for buttons and links, the logo cyan on hover. | ![#f6f7f9](https://img.shields.io/badge/-%20%20%20%20-f6f7f9?style=flat-square) ![#067394](https://img.shields.io/badge/-%20%20%20%20-067394?style=flat-square) ![#149eca](https://img.shields.io/badge/-%20%20%20%20-149eca?style=flat-square) | ![#23272f](https://img.shields.io/badge/-%20%20%20%20-23272f?style=flat-square) ![#58c4dc](https://img.shields.io/badge/-%20%20%20%20-58c4dc?style=flat-square) ![#61dafb](https://img.shields.io/badge/-%20%20%20%20-61dafb?style=flat-square) |
 | **[Blazor](https://blazor.mvcprogrammer.com)**<br><sub>`blazor/`</sub> | Blazor WebAssembly on .NET 10, C# components in the browser, xUnit and bUnit. | .NET violet: the .NET brand purple on faint lavender, a deep violet-black with lilac buttons after dark, the Blazor gradient's pink on hover. | ![#f4f1fb](https://img.shields.io/badge/-%20%20%20%20-f4f1fb?style=flat-square) ![#512bd4](https://img.shields.io/badge/-%20%20%20%20-512bd4?style=flat-square) ![#c2187a](https://img.shields.io/badge/-%20%20%20%20-c2187a?style=flat-square) | ![#1a1430](https://img.shields.io/badge/-%20%20%20%20-1a1430?style=flat-square) ![#b49cff](https://img.shields.io/badge/-%20%20%20%20-b49cff?style=flat-square) ![#ff7ac8](https://img.shields.io/badge/-%20%20%20%20-ff7ac8?style=flat-square) |
 
-Swatches are page, accent, and hover, in that order; the Angular row adds its quote-band color second.
+Swatches are page, accent, and hover, in that order; the Angular row adds its quote-band color second. The default edition is the screenshot at the top of this page; the other three:
+
+<div align="center">
+
+| Angular | React | Blazor |
+| :---: | :---: | :---: |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mvcprogrammer/mvcprogrammer.com/main/docs/images/mvcprogrammer-com-angular-dark.png"><img alt="The Angular edition, home page" src="https://raw.githubusercontent.com/mvcprogrammer/mvcprogrammer.com/main/docs/images/mvcprogrammer-com-angular-light.png" width="300"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mvcprogrammer/mvcprogrammer.com/main/docs/images/mvcprogrammer-com-react-dark.png"><img alt="The React edition, home page" src="https://raw.githubusercontent.com/mvcprogrammer/mvcprogrammer.com/main/docs/images/mvcprogrammer-com-react-light.png" width="300"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mvcprogrammer/mvcprogrammer.com/main/docs/images/mvcprogrammer-com-blazor-dark.png"><img alt="The Blazor edition, home page" src="https://raw.githubusercontent.com/mvcprogrammer/mvcprogrammer.com/main/docs/images/mvcprogrammer-com-blazor-light.png" width="300"></picture> |
+| <sub>[angular.mvcprogrammer.com](https://angular.mvcprogrammer.com)</sub> | <sub>[react.mvcprogrammer.com](https://react.mvcprogrammer.com)</sub> | <sub>[blazor.mvcprogrammer.com](https://blazor.mvcprogrammer.com)</sub> |
+
+</div>
 
 ## Tech stack
 
