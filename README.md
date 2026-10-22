@@ -73,5 +73,5 @@ Swatches are page, accent, and hover, in that order. The default edition is the 
 <br>
 
 <div align="center">
-<sub>Résumé, freelance, and contact: <a href="https://mvcprogrammer.com/#resume">mvcprogrammer.com</a></sub>
+<sub>Résumé and contact: <a href="https://mvcprogrammer.com/#resume">mvcprogrammer.com</a></sub>
 </div>
