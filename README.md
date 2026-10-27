@@ -75,3 +75,9 @@ Swatches are page, accent, and hover, in that order. The default edition is the 
 <div align="center">
 <sub>Résumé and contact: <a href="https://mvcprogrammer.com/#resume">mvcprogrammer.com</a></sub>
 </div>
+
+## License
+
+Copyright (c) 2026 Neal Thomas.
+
+The source code in this repository is licensed under the GNU Affero General Public License, version 3 (AGPL-3.0-only). See [LICENSE](LICENSE) for the full text.
